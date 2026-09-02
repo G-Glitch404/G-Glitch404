@@ -4,7 +4,7 @@
 
 <br>
 
-<a href="https://github.com/G-Glitch404">GitHub</a>
+<a href="https://apify.com/glitch_404">Apify</a>
 &nbsp;&nbsp;·&nbsp;&nbsp;
 <a href="https://www.linkedin.com/in/glitch404/">LinkedIn</a>
 &nbsp;&nbsp;·&nbsp;&nbsp;
@@ -22,18 +22,18 @@ My public work focuses on turning difficult or repetitive data-collection workfl
 
 Current areas of interest:
 
-`Python Automation` · `Web Scraping` · `Browser Automation` · `FastAPI` · `Docker` · `PostgreSQL` · `Data Pipelines` · `Security` · `Reverse Engineering`
+`Python Automation` · `Web Scraping` · `Browser Automation` · `Websockets & APIs` · `Docker` · `PostgreSQL` · `Data Pipelines` · `Security` · `Reverse Engineering`
 
 ## Selected Work
 
-| Project | Focus |
-| --- | --- |
-| [RedditScraper](https://github.com/G-Glitch404/RedditScraper) | Reddit extraction, crawling, filtering and analysis |
-| [xActionsWrapper](https://github.com/G-Glitch404/xActionsWrapper) | Dockerized X scraping microservice |
-| [TelegramCrawler](https://github.com/G-Glitch404/TelegramCrawler) | Telegram crawling, enrichment and streaming |
-| [investing.com-scraper](https://github.com/G-Glitch404/investing.com-scraper) | Structured financial content extraction |
-| [RedditCrawler](https://github.com/G-Glitch404/RedditCrawler) | FastAPI-based Reddit crawling |
-| [Seleniumbase-Template](https://github.com/G-Glitch404/Seleniumbase-Template) | Reusable browser automation foundation |
+| Project                                                                       | Focus                                               |
+|-------------------------------------------------------------------------------|-----------------------------------------------------|
+| [RedditScraper](https://github.com/G-Glitch404/RedditScraper)                 | Reddit extraction, crawling, filtering and analysis |
+| [xActionsWrapper](https://github.com/G-Glitch404/xActionsWrapper)             | Dockerized X scraping microservice                  |
+| [TelegramCrawler](https://github.com/G-Glitch404/TelegramCrawler)             | Telegram crawling, enrichment and streaming         |
+| [investing.com-scraper](https://github.com/G-Glitch404/investing.com-scraper) | Structured financial content extraction             |
+| [RedditCrawler](https://github.com/G-Glitch404/RedditCrawler)                 | FastAPI-based Reddit crawling                       |
+| [Seleniumbase-Template](https://github.com/G-Glitch404/Seleniumbase-Template) | Reusable browser automation foundation              |
 
 ## Engineering Approach
 
@@ -49,3 +49,4 @@ Some of my larger projects are private. This profile intentionally highlights th
 
 
 ---
+```

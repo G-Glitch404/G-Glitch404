@@ -1,7 +1,6 @@
-from __future__ import annotations
-
 import html
 import json
+import math
 import os
 import time
 from collections import Counter
@@ -470,7 +469,7 @@ def build_monthly_chart(
             prs.get(month, 0),
             issues.get(month, 0),
         ]
-        bar_width = max(4, (group_width - 18) / 3)
+        bar_width = max(4, math.ceil((group_width - 18) / 3))
         gap = 3
 
         for value_index, value in enumerate(values):
