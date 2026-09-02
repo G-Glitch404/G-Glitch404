@@ -39,3 +39,13 @@ Current areas of interest:
 
 ```text
 collect → normalize → enrich → analyze → expose → automate
+I am particularly interested in building reliable systems at the intersection of automation, data extraction, backend engineering, and security.
+
+Private Work
+
+Some of my larger projects are private. This profile intentionally highlights the public work that best represents my engineering direction.
+
+<sub>Dashboard statistics are generated automatically from public GitHub data.</sub>
+
+
+---
