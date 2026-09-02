@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1710" viewBox="0 0 1200 1710">
+<rect width="1200" height="1710" fill="#0d1117"/>
+<defs>
+<linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#2f81f7" stop-opacity="0.22"/>
+<stop offset="55%" stop-color="#bc8cff" stop-opacity="0.13"/>
+<stop offset="100%" stop-color="#39d0d8" stop-opacity="0.08"/>
+</linearGradient>
+</defs>
+<rect x="24" y="24" width="1152" height="300" rx="28" fill="url(#hero)" stroke="#30363d"/>
+<text x="64" y="94" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="38px" font-weight="800">YOUSIF WAEL</text>
+<text x="64" y="136" fill="#58a6ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18px" font-weight="700">G-GLITCH404</text>
+<text x="64" y="188" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20px" font-weight="700">SOFTWARE DEVELOPER</text>
+<text x="64" y="222" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30px" font-weight="600">Python automation · Web data · Backend systems</text>
+<text x="64" y="270" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18px">Building crawlers, services, extraction pipelines and automation infrastructure</text>
+<rect x="876" y="70" width="238" height="174" rx="18" fill="#11161d" stroke="#30363d"/>
+<text x="995" y="105" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13px" font-weight="700" text-anchor="middle">ENGINEERING</text>
+<text x="995" y="142" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21px" font-weight="800" text-anchor="middle">AUTOMATION</text>
+<text x="995" y="174" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21px" font-weight="800" text-anchor="middle">DATA</text>
+<text x="995" y="206" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21px" font-weight="800" text-anchor="middle">BACKEND</text>
+<text x="995" y="238" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21px" font-weight="800" text-anchor="middle">SECURITY</text>
+
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<g><rect x="24" y="350" width="270" height="150" rx="18" fill="#161b22" stroke="#30363d"/><rect x="24" y="350" width="5" height="150" rx="2" fill="#58a6ff"/><text x="48" y="388" fill="#8b949e" font-size="13px" font-weight="700">PUBLIC REPOS</text><text x="48" y="448" fill="#f0f6fc" font-size="40px" font-weight="800">10</text></g>
+<g><rect x="314" y="350" width="270" height="150" rx="18" fill="#161b22" stroke="#30363d"/><rect x="314" y="350" width="5" height="150" rx="2" fill="#f0883e"/><text x="338" y="388" fill="#8b949e" font-size="13px" font-weight="700">STARS</text><text x="338" y="448" fill="#f0f6fc" font-size="40px" font-weight="800">—</text></g>
+<g><rect x="604" y="350" width="270" height="150" rx="18" fill="#161b22" stroke="#30363d"/><rect x="604" y="350" width="5" height="150" rx="2" fill="#bc8cff"/><text x="628" y="388" fill="#8b949e" font-size="13px" font-weight="700">FORKS</text><text x="628" y="448" fill="#f0f6fc" font-size="40px" font-weight="800">—</text></g>
+<g><rect x="894" y="350" width="282" height="150" rx="18" fill="#161b22" stroke="#30363d"/><rect x="894" y="350" width="5" height="150" rx="2" fill="#3fb950"/><text x="918" y="388" fill="#8b949e" font-size="13px" font-weight="700">FOLLOWERS</text><text x="918" y="448" fill="#f0f6fc" font-size="40px" font-weight="800">—</text></g>
+</g>
+
+<rect x="24" y="526" width="750" height="300" rx="18" fill="#161b22" stroke="#30363d"/>
+<text x="52" y="564" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15px" font-weight="700">PUBLIC ACTIVITY · LAST 365 DAYS</text>
+<text x="52" y="606" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="34px" font-weight="800">LIVE</text>
+<text x="52" y="633" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14px">Updated automatically by GitHub Actions</text>
+<g fill="#21262d">
+<rect x="52" y="668" width="8" height="8" rx="2"/><rect x="63" y="668" width="8" height="8" rx="2"/><rect x="74" y="668" width="8" height="8" rx="2"/>
+</g>
+<text x="52" y="806" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="11px">contribution activity will populate after the first workflow run</text>
+
+<rect x="798" y="526" width="378" height="300" rx="18" fill="#161b22" stroke="#30363d"/>
+<text x="826" y="564" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15px" font-weight="700">PRIMARY LANGUAGES</text>
+<text x="826" y="620" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18px" font-weight="600">Calculated from public repositories</text>
+<text x="826" y="662" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13px">The live distribution appears here after</text>
+<text x="826" y="684" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13px">GitHub Actions generates the dashboard.</text>
+
+<rect x="24" y="852" width="1152" height="280" rx="18" fill="#161b22" stroke="#30363d"/>
+<text x="52" y="890" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15px" font-weight="700">ENGINEERING FOCUS</text>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<text x="52" y="938" fill="#f0f6fc" font-size="14px" font-weight="600">Python Automation</text><rect x="220" y="927" width="280" height="10" rx="5" fill="#21262d"/><rect x="220" y="927" width="269" height="10" rx="5" fill="#58a6ff"/>
+<text x="52" y="980" fill="#f0f6fc" font-size="14px" font-weight="600">Web Data Extraction</text><rect x="220" y="969" width="280" height="10" rx="5" fill="#21262d"/><rect x="220" y="969" width="258" height="10" rx="5" fill="#58a6ff"/>
+<text x="52" y="1022" fill="#f0f6fc" font-size="14px" font-weight="600">Backend Engineering</text><rect x="220" y="1011" width="280" height="10" rx="5" fill="#21262d"/><rect x="220" y="1011" width="235" height="10" rx="5" fill="#58a6ff"/>
+<text x="52" y="1064" fill="#f0f6fc" font-size="14px" font-weight="600">Browser Automation</text><rect x="220" y="1053" width="280" height="10" rx="5" fill="#21262d"/><rect x="220" y="1053" width="218" height="10" rx="5" fill="#58a6ff"/>
+<text x="608" y="938" fill="#f0f6fc" font-size="14px" font-weight="600">Data Processing</text><rect x="776" y="927" width="280" height="10" rx="5" fill="#21262d"/><rect x="776" y="927" width="202" height="10" rx="5" fill="#bc8cff"/>
+<text x="608" y="980" fill="#f0f6fc" font-size="14px" font-weight="600">Security</text><rect x="776" y="969" width="280" height="10" rx="5" fill="#21262d"/><rect x="776" y="969" width="162" height="10" rx="5" fill="#bc8cff"/>
+<text x="608" y="1022" fill="#f0f6fc" font-size="14px" font-weight="600">Reverse Engineering</text><rect x="776" y="1011" width="280" height="10" rx="5" fill="#21262d"/><rect x="776" y="1011" width="129" height="10" rx="5" fill="#bc8cff"/>
+<text x="608" y="1064" fill="#f0f6fc" font-size="14px" font-weight="600">Low-Level Programming</text><rect x="776" y="1053" width="280" height="10" rx="5" fill="#21262d"/><rect x="776" y="1053" width="106" height="10" rx="5" fill="#bc8cff"/>
+</g>
+<text x="52" y="1106" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13px">Profile dashboard · public data only</text>
+
+<rect x="24" y="1158" width="1152" height="490" rx="18" fill="#161b22" stroke="#30363d"/>
+<text x="52" y="1198" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15px" font-weight="700">FEATURED WORK</text>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<g><rect x="52" y="1232" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="72" y="1263" fill="#f0f6fc" font-size="17px" font-weight="750">RedditScraper</text><text x="72" y="1291" fill="#8b949e" font-size="12px">Reddit extraction and analysis platform</text><text x="72" y="1324" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="154" y="1324" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="72" y="1354" fill="#58a6ff" font-size="12px" font-weight="600">Python</text></g>
+<g><rect x="414" y="1232" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="434" y="1263" fill="#f0f6fc" font-size="17px" font-weight="750">xActionsWrapper</text><text x="434" y="1291" fill="#8b949e" font-size="12px">Containerized X scraping microservice</text><text x="434" y="1324" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="516" y="1324" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="434" y="1354" fill="#58a6ff" font-size="12px" font-weight="600">Python · Node</text></g>
+<g><rect x="776" y="1232" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="796" y="1263" fill="#f0f6fc" font-size="17px" font-weight="750">TelegramCrawler</text><text x="796" y="1291" fill="#8b949e" font-size="12px">Telegram crawling and data processing</text><text x="796" y="1324" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="878" y="1324" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="796" y="1354" fill="#58a6ff" font-size="12px" font-weight="600">Python</text></g>
+<g><rect x="52" y="1410" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="72" y="1441" fill="#f0f6fc" font-size="17px" font-weight="750">investing.com-scraper</text><text x="72" y="1469" fill="#8b949e" font-size="12px">Financial content extraction actor</text><text x="72" y="1502" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="154" y="1502" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="72" y="1532" fill="#58a6ff" font-size="12px" font-weight="600">Python</text></g>
+<g><rect x="414" y="1410" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="434" y="1441" fill="#f0f6fc" font-size="17px" font-weight="750">RedditCrawler</text><text x="434" y="1469" fill="#8b949e" font-size="12px">FastAPI Reddit crawling service</text><text x="434" y="1502" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="516" y="1502" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="434" y="1532" fill="#58a6ff" font-size="12px" font-weight="600">Python</text></g>
+<g><rect x="776" y="1410" width="326" height="146" rx="16" fill="#11161d" stroke="#30363d"/><text x="796" y="1441" fill="#f0f6fc" font-size="17px" font-weight="750">Seleniumbase-Template</text><text x="796" y="1469" fill="#8b949e" font-size="12px">Reusable browser automation foundation</text><text x="796" y="1502" fill="#f0883e" font-size="12px" font-weight="700">★ live</text><text x="878" y="1502" fill="#bc8cff" font-size="12px" font-weight="700">⑂ live</text><text x="796" y="1532" fill="#58a6ff" font-size="12px" font-weight="600">Python</text></g>
+</g>
+<text x="600" y="1694" fill="#8b949e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13px" font-weight="500" text-anchor="middle">github.com/G-Glitch404</text>
+</svg>
