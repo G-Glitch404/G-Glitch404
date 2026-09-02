@@ -7,10 +7,15 @@ on:
   push:
     paths:
       - "generate.py"
+      - "README.md"
       - ".github/workflows/profile-dashboard.yml"
 
 permissions:
   contents: write
+
+concurrency:
+  group: profile-dashboard
+  cancel-in-progress: false
 
 jobs:
   update-dashboard:
@@ -19,6 +24,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync with main
+        run: git pull --rebase origin main
 
       - name: Generate dashboard
         env:
@@ -32,4 +42,9 @@ jobs:
           git add assets/dashboard.svg assets/stats.json
           git diff --cached --quiet && exit 0
           git commit -m "chore: update profile dashboard"
-          git push
+
+      - name: Sync before push
+        run: git pull --rebase origin main
+
+      - name: Push dashboard
+        run: git push origin main
