@@ -1,6 +1,5 @@
 import html
 import json
-import math
 import os
 import time
 from collections import Counter
@@ -469,7 +468,7 @@ def build_monthly_chart(
             prs.get(month, 0),
             issues.get(month, 0),
         ]
-        bar_width = max(4, math.ceil((group_width - 18) / 3))
+        bar_width = max(4, (group_width - 18) / 3)
         gap = 3
 
         for value_index, value in enumerate(values):
@@ -552,9 +551,9 @@ def build_repository_performance(
         (x, y),
         (x + 362, y),
         (x + 724, y),
-        (x, y + 158),
-        (x + 362, y + 158),
-        (x + 724, y + 158),
+        (x, y + 124),
+        (x + 362, y + 124),
+        (x + 724, y + 124),
     ]
 
     for repository, (card_x, card_y) in zip(ranked, positions):
@@ -566,21 +565,21 @@ def build_repository_performance(
 
         output.extend(
             [
-                f'<rect x="{card_x}" y="{card_y}" width="326" height="136" '
+                f'<rect x="{card_x}" y="{card_y}" width="326" height="108" '
                 f'rx="16" fill="{PALETTE["panel2"]}" '
                 f'stroke="{PALETTE["border"]}"/>',
                 svg_text(
                     card_x + 20,
-                    card_y + 29,
-                    truncate(repository["name"], 29),
-                    16,
+                    card_y + 26,
+                    truncate(repository["name"], 25),
+                    17,
                     PALETTE["text"],
                     750,
                 ),
-                f'<circle cx="{card_x + 25}" cy="{card_y + 54}" r="5" fill="{language_color}"/>',
+                f'<circle cx="{card_x + 25}" cy="{card_y + 46}" r="5" fill="{language_color}"/>',
                 svg_text(
                     card_x + 38,
-                    card_y + 59,
+                    card_y + 51,
                     truncate(language, 18),
                     12,
                     PALETTE["muted"],
@@ -588,7 +587,7 @@ def build_repository_performance(
                 ),
                 svg_text(
                     card_x + 20,
-                    card_y + 90,
+                    card_y + 75,
                     f'★ {repository.get("stargazers_count", 0)}',
                     12,
                     PALETTE["orange"],
@@ -596,7 +595,7 @@ def build_repository_performance(
                 ),
                 svg_text(
                     card_x + 100,
-                    card_y + 90,
+                    card_y + 75,
                     f'⑂ {repository.get("forks_count", 0)}',
                     12,
                     PALETTE["purple"],
@@ -604,7 +603,7 @@ def build_repository_performance(
                 ),
                 svg_text(
                     card_x + 180,
-                    card_y + 90,
+                    card_y + 75,
                     f'● {repository["recent_commits"]}',
                     12,
                     PALETTE["green"],
@@ -612,7 +611,7 @@ def build_repository_performance(
                 ),
                 svg_text(
                     card_x + 20,
-                    card_y + 116,
+                    card_y + 96,
                     "commits · last 365 days",
                     11,
                     PALETTE["muted"],
@@ -682,82 +681,104 @@ def build_timeline(
     width: int,
     height: int,
 ) -> str:
-    """Render repository creation timeline"""
+    """Render repository creation timeline with collision-aware labels"""
     if not repositories:
         return ""
 
     repos = sorted(
-        repositories,
+        [repository for repository in repositories if repository.get("created_at")],
         key=lambda repository: repository.get("created_at") or "",
     )
 
-    dates = []
-
-    for repository in repos:
-        created_at = repository.get("created_at")
-        if created_at:
-            dates.append(
-                datetime.fromisoformat(created_at.replace("Z", "+00:00"))
-            )
-
-    if not dates:
+    if not repos:
         return ""
+
+    dates = [
+        datetime.fromisoformat(repository["created_at"].replace("Z", "+00:00"))
+        for repository in repos
+    ]
 
     start = min(dates)
     end = max(dates)
     span = max((end - start).total_seconds(), 1)
     line_y = y + height // 2
-    output = [
-        f'<line x1="{x}" y1="{line_y}" x2="{x + width}" '
-        f'y2="{line_y}" stroke="{PALETTE["border"]}" stroke-width="2"/>'
+    left_bound = x + 62
+    right_bound = x + width - 62
+    usable_width = right_bound - left_bound
+    min_gap = min(92, usable_width / max(len(repos) - 1, 1))
+    label_limit = 14 if len(repos) <= 10 else 11
+    ideal_positions = [
+        left_bound + int(
+            ((created - start).total_seconds() / span) * usable_width
+        )
+        for created in dates
     ]
 
-    for index, repository in enumerate(repos):
-        created_at = repository.get("created_at")
-        if not created_at:
-            continue
+    positions = []
+    for ideal in ideal_positions:
+        position = ideal
+        if positions:
+            position = max(position, positions[-1] + min_gap)
+        positions.append(position)
 
-        created = datetime.fromisoformat(
-            created_at.replace("Z", "+00:00")
-        )
-        ratio = (created - start).total_seconds() / span
-        px = x + int(ratio * width)
-        direction = -1 if index % 2 == 0 else 1
-        dot_y = line_y + direction * 20
+    if positions[-1] > right_bound:
+        gap = usable_width / max(len(positions) - 1, 1)
+        positions = [left_bound + int(index * gap) for index in range(len(positions))]
+    elif positions[0] < left_bound:
+        shift = left_bound - positions[0]
+        positions = [position + shift for position in positions]
+
+    lanes = [
+        line_y - min(52, height // 3),
+        line_y + min(52, height // 3),
+    ]
+
+    output = [
+        f'<line x1="{x + 18}" y1="{line_y}" x2="{x + width - 18}" '
+        f'y2="{line_y}" stroke="{PALETTE["border"]}" stroke-width="2"/>',
+    ]
+
+    for index, (repository, created, px) in enumerate(
+        zip(repos, dates, positions)
+    ):
+        lane = lanes[index % len(lanes)]
+        upper = lane < line_y
+        label_y = lane - 13 if upper else lane + 22
+        date_y = lane - 29 if upper else lane + 38
+        label_x = px
+        label_anchor = "middle"
+        if px - left_bound < 48:
+            label_x = px + 4
+            label_anchor = "start"
+        elif right_bound - px < 48:
+            label_x = px - 4
+            label_anchor = "end"
 
         output.extend(
             [
-                f'<line x1="{px}" y1="{line_y}" x2="{px}" '
-                f'y2="{dot_y}" stroke="{PALETTE["border"]}" stroke-width="1"/>',
-                f'<circle cx="{px}" cy="{dot_y}" r="6" '
-                f'fill="{PALETTE["accent"]}"/>',
+                f'<line x1="{px}" y1="{line_y}" x2="{px}" y2="{lane}" '
+                f'stroke="{PALETTE["border"]}" stroke-width="1"/>',
+                f'<circle cx="{px}" cy="{lane}" r="5" fill="{PALETTE["accent"]}"/>',
                 svg_text(
-                    px,
-                    dot_y + (28 if direction > 0 else -12),
-                    truncate(repository["name"], 18),
-                    10,
+                    label_x,
+                    label_y,
+                    truncate(repository["name"], label_limit),
+                    12,
                     PALETTE["text"],
-                    600,
-                    "middle",
+                    650,
+                    label_anchor,
                 ),
                 svg_text(
-                    px,
-                    dot_y + (42 if direction > 0 else -26),
+                    label_x,
+                    date_y,
                     created.strftime("%Y-%m"),
-                    9,
+                    10,
                     PALETTE["muted"],
-                    400,
-                    "middle",
+                    500,
+                    label_anchor,
                 ),
             ]
         )
-
-    output.extend(
-        [
-            svg_text(x, y + height - 4, start.strftime("%Y"), 10, PALETTE["muted"], 500),
-            svg_text(x + width, y + height - 4, end.strftime("%Y"), 10, PALETTE["muted"], 500, "end"),
-        ]
-    )
 
     return "".join(output)
 
@@ -792,7 +813,7 @@ def build_dashboard(
     account_year = created[:4] if created else "—"
 
     width = 1200
-    height = 2780
+    height = 2320
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" '
@@ -806,18 +827,18 @@ def build_dashboard(
         f'<stop offset="100%" stop-color="{PALETTE["cyan"]}" stop-opacity="0.08"/>',
         "</linearGradient>",
         "</defs>",
-        f'<rect x="24" y="24" width="1152" height="300" rx="28" fill="url(#hero)" stroke="{PALETTE["border"]}"/>',
-        svg_text(64, 94, "YOUSIF WAEL", 38, PALETTE["text"], 800),
-        svg_text(64, 136, "G-GLITCH404", 18, PALETTE["accent"], 700),
-        svg_text(64, 188, "SOFTWARE DEVELOPER", 20, PALETTE["muted"], 700),
-        svg_text(64, 222, "Python automation · Web data · Backend systems", 30, PALETTE["text"], 600),
-        svg_text(64, 270, "Building crawlers, services, extraction pipelines and automation infrastructure", 18, PALETTE["muted"], 400),
-        rounded_card(876, 70, 238, 174, PALETTE["panel2"]),
-        svg_text(995, 105, "ENGINEERING", 13, PALETTE["muted"], 700, "middle"),
-        svg_text(995, 142, "AUTOMATION", 21, PALETTE["text"], 800, "middle"),
-        svg_text(995, 174, "DATA", 21, PALETTE["text"], 800, "middle"),
-        svg_text(995, 206, "BACKEND", 21, PALETTE["text"], 800, "middle"),
-        svg_text(995, 238, "SECURITY", 21, PALETTE["text"], 800, "middle"),
+        f'<rect x="24" y="24" width="1152" height="270" rx="28" fill="url(#hero)" stroke="{PALETTE["border"]}"/>',
+        svg_text(64, 88, "YOUSIF WAEL", 40, PALETTE["text"], 800),
+        svg_text(64, 132, "G-GLITCH404", 19, PALETTE["accent"], 700),
+        svg_text(64, 180, "SOFTWARE DEVELOPER", 20, PALETTE["muted"], 700),
+        svg_text(64, 216, "Python automation · Web data · Backend systems", 31, PALETTE["text"], 600),
+        svg_text(64, 260, "Building crawlers, services, extraction pipelines and automation infrastructure", 17, PALETTE["muted"], 400),
+        rounded_card(876, 64, 238, 174, PALETTE["panel2"]),
+        svg_text(995, 99, "ENGINEERING", 13, PALETTE["muted"], 700, "middle"),
+        svg_text(995, 136, "AUTOMATION", 22, PALETTE["text"], 800, "middle"),
+        svg_text(995, 168, "DATA", 22, PALETTE["text"], 800, "middle"),
+        svg_text(995, 200, "BACKEND", 22, PALETTE["text"], 800, "middle"),
+        svg_text(995, 232, "SECURITY", 22, PALETTE["text"], 800, "middle"),
     ]
 
     stat_cards = [
@@ -832,34 +853,34 @@ def build_dashboard(
     for label, value, accent in stat_cards:
         parts.extend(
             [
-                rounded_card(x, 350, 270, 150),
-                f'<rect x="{x}" y="350" width="5" height="150" rx="2" fill="{accent}"/>',
-                svg_text(x + 24, 388, label, 13, PALETTE["muted"], 700),
-                svg_text(x + 24, 448, short_number(int(value)), 40, PALETTE["text"], 800),
+                rounded_card(x, 314, 270, 128),
+                f'<rect x="{x}" y="314" width="5" height="128" rx="2" fill="{accent}"/>',
+                svg_text(x + 24, 348, label, 14, PALETTE["muted"], 700),
+                svg_text(x + 24, 404, short_number(int(value)), 42, PALETTE["text"], 800),
             ]
         )
         x += 290
 
     parts.extend(
         [
-            rounded_card(24, 526, 750, 300),
-            svg_text(52, 564, "PUBLIC ACTIVITY · LAST 365 DAYS", 15, PALETTE["muted"], 700),
-            svg_text(52, 606, short_number(commits), 34, PALETTE["text"], 800),
-            svg_text(52, 633, "authored commits in public repositories", 14, PALETTE["muted"], 400),
-            build_heatmap(commit_days, 52, 678, 8, 3),
-            svg_text(52, 806, "less", 11, PALETTE["muted"], 400),
-            '<rect x="82" y="797" width="12" height="12" rx="2" fill="#21262d"/>',
-            '<rect x="100" y="797" width="12" height="12" rx="2" fill="#0e4429"/>',
-            '<rect x="118" y="797" width="12" height="12" rx="2" fill="#006d32"/>',
-            '<rect x="136" y="797" width="12" height="12" rx="2" fill="#26a641"/>',
-            '<rect x="154" y="797" width="12" height="12" rx="2" fill="#39d353"/>',
-            svg_text(174, 806, "more", 11, PALETTE["muted"], 400),
-            rounded_card(798, 526, 378, 300),
-            svg_text(826, 564, "PRIMARY LANGUAGES", 15, PALETTE["muted"], 700),
+            rounded_card(24, 462, 750, 270),
+            svg_text(52, 500, "PUBLIC ACTIVITY · LAST 365 DAYS", 16, PALETTE["muted"], 700),
+            svg_text(52, 540, short_number(commits), 36, PALETTE["text"], 800),
+            svg_text(52, 567, "authored commits in public repositories", 14, PALETTE["muted"], 400),
+            build_heatmap(commit_days, 52, 600, 8, 3),
+            svg_text(52, 709, "less", 11, PALETTE["muted"], 400),
+            '<rect x="82" y="700" width="12" height="12" rx="2" fill="#21262d"/>',
+            '<rect x="100" y="700" width="12" height="12" rx="2" fill="#0e4429"/>',
+            '<rect x="118" y="700" width="12" height="12" rx="2" fill="#006d32"/>',
+            '<rect x="136" y="700" width="12" height="12" rx="2" fill="#26a641"/>',
+            '<rect x="154" y="700" width="12" height="12" rx="2" fill="#39d353"/>',
+            svg_text(174, 709, "more", 11, PALETTE["muted"], 400),
+            rounded_card(798, 462, 378, 270),
+            svg_text(826, 500, "PRIMARY LANGUAGES", 16, PALETTE["muted"], 700),
         ]
     )
 
-    language_y = 604
+    language_y = 540
 
     for language, count in top_languages:
         percentage = count / language_total
@@ -878,8 +899,8 @@ def build_dashboard(
 
     parts.extend(
         [
-            rounded_card(24, 852, 1152, 280),
-            svg_text(52, 890, "ENGINEERING FOCUS", 15, PALETTE["muted"], 700),
+            rounded_card(24, 750, 1152, 220),
+            svg_text(52, 788, "ENGINEERING FOCUS", 16, PALETTE["muted"], 700),
         ]
     )
 
@@ -887,7 +908,7 @@ def build_dashboard(
     focus_right = FOCUS[4:]
 
     for index, (label, score) in enumerate(focus_left):
-        y = 938 + index * 42
+        y = 829 + index * 36
         parts.extend(
             [
                 svg_text(52, y, label, 14, PALETTE["text"], 600),
@@ -898,7 +919,7 @@ def build_dashboard(
         )
 
     for index, (label, score) in enumerate(focus_right):
-        y = 938 + index * 42
+        y = 829 + index * 36
         parts.extend(
             [
                 svg_text(608, y, label, 14, PALETTE["text"], 600),
@@ -909,62 +930,62 @@ def build_dashboard(
         )
 
     parts.append(
-        svg_text(52, 1106, f"Public profile since {account_year}", 13, PALETTE["muted"], 400)
+        svg_text(52, 952, f"Public profile since {account_year}", 13, PALETTE["muted"], 400)
     )
 
     parts.extend(
         [
-            rounded_card(24, 1158, 1152, 490),
-            svg_text(52, 1198, "FEATURED WORK", 15, PALETTE["muted"], 700),
+            rounded_card(24, 988, 1152, 354),
+            svg_text(52, 1024, "FEATURED WORK", 16, PALETTE["muted"], 700),
         ]
     )
 
     positions = [
-        (52, 1232),
-        (414, 1232),
-        (776, 1232),
-        (52, 1410),
-        (414, 1410),
-        (776, 1410),
+        (52, 1054),
+        (414, 1054),
+        (776, 1054),
+        (52, 1190),
+        (414, 1190),
+        (776, 1190),
     ]
 
     for repository, (card_x, card_y) in zip(featured, positions):
         parts.extend(
             [
-                f'<rect x="{card_x}" y="{card_y}" width="326" height="146" rx="16" fill="{PALETTE["panel2"]}" stroke="{PALETTE["border"]}"/>',
-                svg_text(card_x + 20, card_y + 31, truncate(repository["name"], 28), 17, PALETTE["text"], 750),
-                svg_text(card_x + 20, card_y + 59, truncate(repository.get("dashboard_description", ""), 38), 12, PALETTE["muted"], 400),
-                svg_text(card_x + 20, card_y + 92, f'★ {repository.get("stargazers_count", 0)}', 12, PALETTE["orange"], 700),
-                svg_text(card_x + 102, card_y + 92, f'⑂ {repository.get("forks_count", 0)}', 12, PALETTE["purple"], 700),
-                svg_text(card_x + 20, card_y + 122, truncate(repository.get("language") or "Mixed stack", 24), 12, PALETTE["accent"], 600),
+                f'<rect x="{card_x}" y="{card_y}" width="326" height="122" rx="16" fill="{PALETTE["panel2"]}" stroke="{PALETTE["border"]}"/>',
+                svg_text(card_x + 20, card_y + 28, truncate(repository["name"], 27), 18, PALETTE["text"], 750),
+                svg_text(card_x + 20, card_y + 55, truncate(repository.get("dashboard_description", ""), 36), 13, PALETTE["muted"], 400),
+                svg_text(card_x + 20, card_y + 84, f'★ {repository.get("stargazers_count", 0)}', 12, PALETTE["orange"], 700),
+                svg_text(card_x + 102, card_y + 84, f'⑂ {repository.get("forks_count", 0)}', 12, PALETTE["purple"], 700),
+                svg_text(card_x + 20, card_y + 108, truncate(repository.get("language") or "Mixed stack", 24), 12, PALETTE["accent"], 600),
             ]
         )
 
     parts.extend(
         [
-            rounded_card(24, 1670, 1152, 390),
-            svg_text(52, 1710, "REPOSITORY PERFORMANCE", 15, PALETTE["muted"], 700),
-            svg_text(52, 1737, "Ranked by public activity, then stars and recent updates", 12, PALETTE["muted"], 400),
-            build_repository_performance(repositories, repository_activity, 52, 1762),
+            rounded_card(24, 1360, 1152, 322),
+            svg_text(52, 1396, "REPOSITORY PERFORMANCE", 16, PALETTE["muted"], 700),
+            svg_text(52, 1422, "Ranked by public activity, then stars and recent updates", 13, PALETTE["muted"], 400),
+            build_repository_performance(repositories, repository_activity, 52, 1450),
         ]
     )
 
     parts.extend(
         [
-            rounded_card(24, 2090, 1152, 600),
-            svg_text(52, 2130, "ACTIVITY", 15, PALETTE["muted"], 700),
-            svg_text(52, 2157, "Commits, pull requests and issues over the last 12 months", 12, PALETTE["muted"], 400),
-            build_monthly_chart(monthly_commits, monthly_prs, monthly_issues, 52, 2180, 690, 240),
-            build_ranked_list(repositories, repository_activity, "active", 790, 2190),
-            build_ranked_list(repositories, repository_activity, "stars", 790, 2318),
-            svg_text(52, 2470, "REPOSITORY CREATION TIMELINE", 13, PALETTE["muted"], 700),
-            build_timeline(repositories, 52, 2490, 1070, 150),
+            rounded_card(24, 1700, 1152, 560),
+            svg_text(52, 1736, "ACTIVITY", 16, PALETTE["muted"], 700),
+            svg_text(52, 1762, "Commits, pull requests and issues over the last 12 months", 13, PALETTE["muted"], 400),
+            build_monthly_chart(monthly_commits, monthly_prs, monthly_issues, 52, 1788, 690, 205),
+            build_ranked_list(repositories, repository_activity, "active", 790, 1798),
+            build_ranked_list(repositories, repository_activity, "stars", 790, 1918),
+            svg_text(52, 2026, "REPOSITORY CREATION TIMELINE", 14, PALETTE["muted"], 700),
+            build_timeline(repositories, 52, 2050, 1070, 165),
         ]
     )
 
     parts.extend(
         [
-            svg_text(600, 2742, "github.com/G-Glitch404", 13, PALETTE["muted"], 500, "middle"),
+            svg_text(600, 2288, "github.com/G-Glitch404", 13, PALETTE["muted"], 500, "middle"),
             "</svg>",
         ]
     )
