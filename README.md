@@ -47,6 +47,5 @@ Some of my larger projects are private. This profile intentionally highlights th
 
 <sub>Dashboard statistics are generated automatically from public GitHub data.</sub>
 
-
----
 ```
+---
