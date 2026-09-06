@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-09-05T07:37:21.384543+00:00",
+  "generated_at": "2026-09-06T07:51:47.057692+00:00",
   "owner": "G-Glitch404",
   "public_repositories": 12,
   "stars": 25,
   "forks": 1,
   "followers": 3,
-  "public_commits_last_365_days": 192,
+  "public_commits_last_365_days": 198,
   "pull_requests_last_12_months": 0,
   "issues_last_12_months": 0,
   "monthly_commits": {
-    "2026-09": 32,
+    "2026-09": 38,
     "2026-08": 70,
     "2026-06": 89,
     "2026-07": 1
@@ -71,6 +71,15 @@
       "language": "Python"
     },
     {
+      "name": "DexScreenerChartsCrawler",
+      "commits_last_365_days": 25,
+      "updated_at": "2026-09-06T05:00:49Z",
+      "created_at": "2026-09-04T11:09:46Z",
+      "stars": 1,
+      "forks": 0,
+      "language": "Python"
+    },
+    {
       "name": "TelegramCrawler",
       "commits_last_365_days": 20,
       "updated_at": "2026-08-30T15:38:52Z",
@@ -80,18 +89,9 @@
       "language": "Python"
     },
     {
-      "name": "DexScreenerChartsCrawler",
-      "commits_last_365_days": 19,
-      "updated_at": "2026-09-04T22:17:25Z",
-      "created_at": "2026-09-04T11:09:46Z",
-      "stars": 1,
-      "forks": 0,
-      "language": "Python"
-    },
-    {
       "name": "G-Glitch404",
       "commits_last_365_days": 12,
-      "updated_at": "2026-09-04T07:57:39Z",
+      "updated_at": "2026-09-05T07:37:26Z",
       "created_at": "2026-09-02T10:27:11Z",
       "stars": 1,
       "forks": 0,
