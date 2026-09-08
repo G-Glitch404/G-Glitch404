@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-09-07T08:13:31.783922+00:00",
+  "generated_at": "2026-09-08T08:01:33.575921+00:00",
   "owner": "G-Glitch404",
   "public_repositories": 12,
   "stars": 25,
   "forks": 1,
   "followers": 3,
-  "public_commits_last_365_days": 199,
+  "public_commits_last_365_days": 204,
   "pull_requests_last_12_months": 0,
   "issues_last_12_months": 0,
   "monthly_commits": {
-    "2026-09": 39,
+    "2026-09": 44,
     "2026-08": 70,
     "2026-06": 89,
     "2026-07": 1
@@ -62,21 +62,21 @@
       "language": "Python"
     },
     {
+      "name": "DexScreenerChartsCrawler",
+      "commits_last_365_days": 31,
+      "updated_at": "2026-09-07T09:30:45Z",
+      "created_at": "2026-09-04T11:09:46Z",
+      "stars": 1,
+      "forks": 0,
+      "language": "Python"
+    },
+    {
       "name": "investing.com-scraper",
       "commits_last_365_days": 31,
       "updated_at": "2026-08-27T20:06:41Z",
       "created_at": "2024-02-22T10:11:50Z",
       "stars": 11,
       "forks": 1,
-      "language": "Python"
-    },
-    {
-      "name": "DexScreenerChartsCrawler",
-      "commits_last_365_days": 26,
-      "updated_at": "2026-09-06T21:05:08Z",
-      "created_at": "2026-09-04T11:09:46Z",
-      "stars": 1,
-      "forks": 0,
       "language": "Python"
     },
     {
@@ -91,7 +91,7 @@
     {
       "name": "G-Glitch404",
       "commits_last_365_days": 12,
-      "updated_at": "2026-09-06T07:51:51Z",
+      "updated_at": "2026-09-07T08:13:58Z",
       "created_at": "2026-09-02T10:27:11Z",
       "stars": 1,
       "forks": 0,
