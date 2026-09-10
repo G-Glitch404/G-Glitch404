@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-09-09T08:05:43.500616+00:00",
+  "generated_at": "2026-09-10T08:04:55.363943+00:00",
   "owner": "G-Glitch404",
   "public_repositories": 12,
   "stars": 25,
   "forks": 1,
   "followers": 3,
-  "public_commits_last_365_days": 204,
+  "public_commits_last_365_days": 209,
   "pull_requests_last_12_months": 0,
   "issues_last_12_months": 0,
   "monthly_commits": {
-    "2026-09": 44,
+    "2026-09": 49,
     "2026-08": 70,
     "2026-06": 89,
     "2026-07": 1
@@ -53,19 +53,19 @@
       "language": "Python"
     },
     {
-      "name": "xActionsWrapper",
-      "commits_last_365_days": 35,
-      "updated_at": "2026-08-27T19:59:33Z",
-      "created_at": "2026-08-02T15:01:33Z",
+      "name": "MemecoinsChartsCrawler",
+      "commits_last_365_days": 36,
+      "updated_at": "2026-09-09T14:53:38Z",
+      "created_at": "2026-09-04T11:09:46Z",
       "stars": 1,
       "forks": 0,
       "language": "Python"
     },
     {
-      "name": "DexScreenerChartsCrawler",
-      "commits_last_365_days": 31,
-      "updated_at": "2026-09-07T09:30:45Z",
-      "created_at": "2026-09-04T11:09:46Z",
+      "name": "xActionsWrapper",
+      "commits_last_365_days": 35,
+      "updated_at": "2026-08-27T19:59:33Z",
+      "created_at": "2026-08-02T15:01:33Z",
       "stars": 1,
       "forks": 0,
       "language": "Python"
@@ -91,7 +91,7 @@
     {
       "name": "G-Glitch404",
       "commits_last_365_days": 12,
-      "updated_at": "2026-09-08T08:03:36Z",
+      "updated_at": "2026-09-09T08:07:40Z",
       "created_at": "2026-09-02T10:27:11Z",
       "stars": 1,
       "forks": 0,
@@ -156,8 +156,8 @@
     "investing.com-scraper",
     "Seleniumbase-Template",
     "RedditScraper",
+    "MemecoinsChartsCrawler",
     "G-Glitch404",
-    "DexScreenerChartsCrawler",
     "RedditCrawler"
   ]
 }
